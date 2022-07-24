@@ -37,7 +37,7 @@ class DataReader:
         """
         header = []
         rows = []
-        with open('../data/20181024_d1_0830_0900.csv', 'r') as file:
+        with open(filename, 'r') as file:
             lines = file.readlines()
             header.extend(lines[0].strip('\n').split(';'))
             rows.extend(list(map(lambda line: line.strip('\n'), lines[1:])))
@@ -75,13 +75,14 @@ class DataReader:
         filename = self.parse_filename(filepath)
         for idx, row in enumerate(rows):
             uid = self.generate_id(idx, filename)
-            line = row.split(';')
+            line = row.split('; ')[:-1]
             vehicle_data["id"].append(uid)
             vehicle_data["track_id"].append(int(line[0]))
             vehicle_data["type"].append(line[1])
             vehicle_data["traveled_d"].append(float(line[2]))
             vehicle_data["avg_speed"].append(float(line[3]))
-            for i in range(0, (len(line[4:]) // 6) * 6, 6):
+            for i in range(0, (len(line) // 6)*6, 6):
+                trajectories_data["id"].append(uid)
                 trajectories_data["lat"].append(float(line[4+i]))
                 trajectories_data["lon"].append(float(line[4+i+1]))
                 trajectories_data["speed"].append(float(line[4+i+2]))
