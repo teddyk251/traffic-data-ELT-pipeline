@@ -55,7 +55,7 @@ class DataReader:
         """
 
         vehicle_data = {
-            "id": [],
+            "uid": [],
             "track_id": [],
             "type": [],
             "traveled_d": [],
@@ -63,7 +63,7 @@ class DataReader:
         }
 
         trajectories_data = {
-            "id": [],
+            "uid": [],
             "lat": [],
             "lon": [],
             "speed": [],
@@ -76,13 +76,13 @@ class DataReader:
         for idx, row in enumerate(rows):
             uid = self.generate_id(idx, filename)
             line = row.split('; ')[:-1]
-            vehicle_data["id"].append(uid)
+            vehicle_data["uid"].append(uid)
             vehicle_data["track_id"].append(int(line[0]))
             vehicle_data["type"].append(line[1])
             vehicle_data["traveled_d"].append(float(line[2]))
             vehicle_data["avg_speed"].append(float(line[3]))
             for i in range(0, (len(line) // 6)*6, 6):
-                trajectories_data["id"].append(uid)
+                trajectories_data["uid"].append(uid)
                 trajectories_data["lat"].append(float(line[4+i]))
                 trajectories_data["lon"].append(float(line[4+i+1]))
                 trajectories_data["speed"].append(float(line[4+i+2]))
