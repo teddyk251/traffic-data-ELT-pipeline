@@ -1,4 +1,4 @@
-{{ config(mateialzied='view')}}
+{{ config(materialzied='view')}}
 
 with 
     vehicles as (select * from {{source('traffic_data', 'vehicles')}}),
@@ -14,6 +14,8 @@ with
         from
             trajectories
                 inner join vehicles on trajectories.uid = vehicles.uid
+        where
+            vehicles.avg_speed > 40
         
     )
     select * from fast_vehicles
