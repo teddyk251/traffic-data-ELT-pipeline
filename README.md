@@ -52,7 +52,7 @@ An ELT pipeline built for the pNEUMA open dataset of naturalistic trajectories o
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![Pipeline Design]()
+![Pipeline Design](https://github.com/teddyk251/traffic-data-ELT-pipeline/blob/main/screenshots/Pipeline-design.png?raw=true)
 A dockerized Extract, Load, Transform (ELT) pipeline with PostgreSQL, Airflow, DBT, and a Redash.
 
 ### Built With
